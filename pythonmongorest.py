@@ -3,8 +3,12 @@
 # Windows x86-64 executable installer: https://www.python.org/ftp/python/3.8.6/python-3.8.6-amd64.exe
 # macOS 64-bit installer: https://www.python.org/ftp/python/3.8.6/python-3.8.6-macosx10.9.pkg
 # Linux Gzipped source tarball: https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tgz
+#Attempted troubleshooting steps
+import werkzeug
+werkzeug.cached_property = werkzeug.utils.cached_property
+from markupsafe import escape
 from flask import Flask
-from flask_restx import Api, Resource, fields
+from flask_restplus import Api, Resource, fields
 from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
@@ -34,7 +38,7 @@ def add_star():
     output = {'name': new_star['name'], 'distance': new_star['distance']}
     return jsonify({'result' : output})
 
-// Updated function get_connection 10/7/2022
+# Updated function get_connection 10/7/2022
 def get_connection(self):
     try:
         client = MongoClient(MongoDbConnection.CONNECTION_STR)
